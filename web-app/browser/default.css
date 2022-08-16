@@ -22,6 +22,14 @@
     --palette-secondary1: #3daee9;
 
     --grid-background: #1143c4;
+/*different colors*/
+    --color-red:#D30000;
+    --color-blue:#1134A6;
+    --color-light-blue:#89CFEF;
+    --color-green:#3BB143;
+    --color-yellow:#FFF200;
+    --color-orange:#FC6600;
+    --color-purple:#6F2DA8;
 }
 
 *
@@ -29,7 +37,7 @@
     box-sizing: border-box;
 }
 
-body
+body /*title*/
 {
     color: var(--palette-base5);
     font-family: "Fira Sans", sans-serif;
@@ -40,7 +48,7 @@ body
     width: 100%;
 }
 
-header
+header /*top line*/
 {
     background: var(--palette-accent2);
     height: var(--header-height);
@@ -50,7 +58,7 @@ header
     width: 100%;
 }
 
-header a
+header a /*Api docu*/
 {
     color: var(--palette-base5);
     position: absolute;
@@ -58,7 +66,7 @@ header a
     top: 0.5em;
 }
 
-header h1
+header h1 /*title characteristics*/
 {
     font-size: 28pt;
     font-weight: bold;
@@ -67,7 +75,7 @@ header h1
     margin: 0;
 }
 
-aside
+aside /*left side column*/
 {
     background: var(--palette-base1);
     height: calc(100% - var(--header-height) - var(--footer-height));
@@ -77,7 +85,7 @@ aside
     width: var(--sidebar-width);
 }
 
-main
+main /*grid surroundings*/
 {
     background: var(--palette-base2);
     height: calc(100% - var(--header-height) - var(--footer-height));
@@ -97,7 +105,7 @@ footer
     width: 100%;
 }
 
-.grid
+.grid /*grid (array)*/
 {
     aspect-ratio: var(--grid-aspect);
     background: var(--palette-base0);
@@ -119,7 +127,7 @@ footer
     width: 100%;
 }
 
-.cell
+.cell /*caracteristicas de lineas de cada cuadradito*/
 {
     background-size: cover;
     border: 0.5px solid var(--palette-base3);
@@ -138,37 +146,37 @@ footer
 
 .cell.I
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-light-blue);
 }
 
 .cell.J
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-blue);
 }
 
 .cell.L
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-orange);
 }
 
 .cell.O
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-yellow);
 }
 
 .cell.S
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-green);
 }
 
 .cell.T
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-purple);
 }
 
 .cell.Z
 {
-    background-color: var(--palette-secondary1);
+    background-color: var(--color-red);
 }
 
 .cell.current
