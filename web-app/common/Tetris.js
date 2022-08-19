@@ -9,7 +9,7 @@ const Tetris = Object.create(null);
 /**
  * A smaller grid contains information about the upcoming tetromino.
  */
- const Smallgrid = Object.create(null);
+const Smallgrid = Object.create(null);
 
 //----------------------------------------------------------------------------//
 // ## Type Definitions                                                        //
@@ -322,7 +322,7 @@ Tetris.new_game = function () {
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": new_score(),
-        "held_tetromino" : undefined,
+        "held_tetromino": undefined,
         "can_hold": true
     };
 };
