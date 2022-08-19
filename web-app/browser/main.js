@@ -9,6 +9,8 @@ document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
 
 const grid = document.getElementById("grid");
+const next_tetromino = document.getElementById("current_tetromino");
+
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
 
@@ -74,6 +76,9 @@ document.body.onkeydown = function (event) {
     }
     if (event.key === " ") {
         game = Tetris.hard_drop(game);
+    }
+    if (event.key === "c") { /**or 67 */
+        game = Tetris.hold(game);
     }
     update_grid();
 };
