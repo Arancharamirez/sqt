@@ -3,20 +3,20 @@ import Tetris from "../common/Tetris.js";
 const grid_columns = Tetris.field_width;
 const grid_rows = Tetris.field_height;
 
-/**const next_columns = Smallgrid.field_width;
-const next_rows = Smallgrid.field_height;*/
+const next_columns = 3;
+const next_rows = 2;
 
 let game = Tetris.new_game();
 
 document.documentElement.style.setProperty("--grid-rows", grid_rows);
 document.documentElement.style.setProperty("--grid-columns", grid_columns);
 
-/**document.documentElement.style.setProperty("--nextgrid-rows",next_rows);
-document.documentElement.style.setProperty("--nextgrid-columns", next_columns);*/
+document.documentElement.style.setProperty("--nextgrid-rows", next_rows);
+document.documentElement.style.setProperty("--nextgrid-columns", next_columns);
 
 const grid = document.getElementById("grid");
 const next_tetromino = document.getElementById("current_tetromino");
-/**const next_grid = document.getElementById("nextgrid");*/
+const next_grid = document.getElementById("nextgrid");
 
 
 const range = (n) => Array.from({"length": n}, (ignore, k) => k);
@@ -38,12 +38,12 @@ const cells = range(grid_rows).map(function () {
     return rows;
 });
 
-/**const next_cells = range(next_rows).map(function () {
-    const next_row = document.createElement("div");
+const next_cells = range(next_rows).map(function () {
+    const next_row = document.createElement("nextdiv");
     next_row.className = "next-row";
 
-    const next_rowss = range(next_columns).map(function () {
-        const next_cell = document.createElement("div");
+    const next_rows2 = range(next_columns).map(function () {
+        const next_cell = document.createElement("nextdiv");
         next_cell.className = "next-cell";
 
         next_row.append(next_cell);
@@ -52,8 +52,8 @@ const cells = range(grid_rows).map(function () {
     });
 
     grid.append(next_row);
-    return next_rowss;
-});*/
+    return next_rows2;
+});
 
 const update_grid = function () {
     game.field.forEach(function (line, line_index) {
