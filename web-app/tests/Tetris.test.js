@@ -60,7 +60,7 @@ describe("Hold", function () {
             const final_piece = final_game.held_tetromino;
             if (R.equals(initial_piece, final_piece)) {
                 throw new Error(
-                    `The initial and final tetromino are the same:
+                    `The initial and final tetrominos are the same:
                     Initial: ${JSON.stringify(initial_piece)}
                     Final:   ${JSON.stringify(final_piece)}`
                 );
