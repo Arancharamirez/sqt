@@ -6,10 +6,14 @@ import R from "./ramda.js";
  */
 const Tetris = Object.create(null);
 
+/**
+ * A smaller grid contains information about the upcoming tetromino.
+ */
+ const SmallGrid = Object.create(null);
 
 //----------------------------------------------------------------------------//
 // ## Type Definitions                                                        //
-//----------------------------------------------------------------------------//
+//---------------------------------gr-----------------------------------------//
 
 
 /**
@@ -26,6 +30,8 @@ const Tetris = Object.create(null);
  * @property {Tetris.Tetromino} next_tetromino The next piece to descend.
  * @property {number[]} position Where in the field is the current tetromino.
  * @property {Tetris.Score} score Information relating to the score of the game.
+ * @property {Tetris.Tetromino} held_tetromino Tetromino player is holding.
+ * @property {boolean} can_hold Determines if holding is allowed.
  */
 
 /**
@@ -258,6 +264,18 @@ Tetris.field_width = 10;
 
 const starting_position = [Math.floor(Tetris.field_width / 2) - 1, 0];
 
+/**
+ * The height of Small Grid.
+ */
+SmallGrid.field_height = 2;
+
+/**
+ * The width of Small Grid.
+ */
+SmallGrid.field_width = 3;
+
+const next_position = [Math.floor(SmallGrid.field_width/2)-1,0];
+
 //----------------------------------------------------------------------------//
 // ## Methods                                                                 //
 //----------------------------------------------------------------------------//
@@ -305,7 +323,9 @@ Tetris.new_game = function () {
         "game_over": false,
         "next_tetromino": next_tetromino,
         "position": starting_position,
-        "score": new_score()
+        "score": new_score(),
+        "held_tetromino" : current_tetromino,
+        "can_hold": true
     };
 };
 
@@ -594,8 +614,35 @@ Tetris.next_turn = function (game) {
         "game_over": false,
         "next_tetromino": next_tetromino,
         "position": starting_position,
-        "score": game.score
+        "score": game.score,
+        "held_tetromino": held_tetromino,
+        "can_hold": false
     };
+};
+
+/**
+ * hold retains a designated tetromino.
+ * It will attempt to hold a tetromino.
+ * If it is possible, the tetromino will be placed on the side.
+ * Otherwise it checks if the position is occupied. (Another tetromiino already held)
+ * @param {Tetris.Game} game
+ * @returns {Tetris.Game}
+ */
+Tetris.hold = function (game) {
+
+    const holding_space = [["","",""],["","",""]];
+
+    return {
+        "bag": bag,
+        "current_tetromino": game.next_tetromino,
+        "field": cleared_field,
+        "game_over": false,
+        "next_tetromino": next_tetromino,
+        "position": starting_position,
+        "score": game.score,
+        "held_tetromino": held_tetromino,
+        "can_hold": false
+    }
 };
 
 /**
