@@ -9,7 +9,7 @@ const Tetris = Object.create(null);
 /**
  * A smaller grid contains information about the upcoming tetromino.
  */
- const SmallGrid = Object.create(null);
+ const Smallgrid = Object.create(null);
 
 //----------------------------------------------------------------------------//
 // ## Type Definitions                                                        //
@@ -267,14 +267,12 @@ const starting_position = [Math.floor(Tetris.field_width / 2) - 1, 0];
 /**
  * The height of Small Grid.
  */
-SmallGrid.field_height = 2;
+Smallgrid.field_height = 2;
 
 /**
  * The width of Small Grid.
  */
-SmallGrid.field_width = 3;
-
-const next_position = [Math.floor(SmallGrid.field_width/2)-1,0];
+Smallgrid.field_width = 3;
 
 //----------------------------------------------------------------------------//
 // ## Methods                                                                 //
@@ -324,7 +322,7 @@ Tetris.new_game = function () {
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": new_score(),
-        "held_tetromino" : current_tetromino,
+        "held_tetromino" : undefined,
         "can_hold": true
     };
 };
@@ -615,8 +613,8 @@ Tetris.next_turn = function (game) {
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": game.score,
-        "held_tetromino": held_tetromino,
-        "can_hold": false
+        "held_tetromino": game.held_tetromino,
+        "can_hold": true /**only if theres another tetromino held */
     };
 };
 
@@ -624,25 +622,40 @@ Tetris.next_turn = function (game) {
  * hold retains a designated tetromino.
  * It will attempt to hold a tetromino.
  * If it is possible, the tetromino will be placed on the side.
- * Otherwise it checks if the position is occupied. (Another tetromiino already held)
+ * Otherwise it checks if the position is occupied.
+ * (Another tetromiino already held)
  * @param {Tetris.Game} game
  * @returns {Tetris.Game}
  */
 Tetris.hold = function (game) {
-
-    const holding_space = [["","",""],["","",""]];
-
+    if (!game.can_hold) {
+        return game;
+    }
+    if (game.held_tetromino) {
+        return {
+            "bag": game.bag,
+            "current_tetromino": game.held_tetromino,
+            "field": game.field,
+            "game_over": false,
+            "next_tetromino": game.next_tetromino,
+            "position": starting_position,
+            "score": game.score,
+            "held_tetromino": game.current_tetromino,
+            "can_hold": false
+        };
+    }
+    const [next_tetromino, bag] = game.bag();
     return {
         "bag": bag,
         "current_tetromino": game.next_tetromino,
-        "field": cleared_field,
+        "field": game.field,
         "game_over": false,
         "next_tetromino": next_tetromino,
         "position": starting_position,
         "score": game.score,
-        "held_tetromino": held_tetromino,
+        "held_tetromino": game.current_tetromino,
         "can_hold": false
-    }
+    };
 };
 
 /**
