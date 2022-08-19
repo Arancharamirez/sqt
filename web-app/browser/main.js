@@ -55,6 +55,23 @@ const next_cells = range(next_rows).map(function () {
     return next_rows2;
 });
 
+const hold_cells = range(next_rows).map(function () {
+    const hold_row = document.createElement("holddiv");
+    hold_row.className = "hold-row";
+
+    const hold_rows2 = range(next_columns).map(function () {
+        const hold_cell = document.createElement("holddiv");
+        hold_cell.className = "hold-cell";
+
+        hold_row.append(hold_cell);
+
+        return hold_cell;
+    });
+
+    grid.append(hold_row);
+    return hold_rows2;
+});
+
 const update_grid = function () {
     game.field.forEach(function (line, line_index) {
         line.forEach(function (block, column_index) {
