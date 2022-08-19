@@ -4,6 +4,10 @@
     --grid-rows: 6;
     --grid-aspect: var(--grid-columns) / var(--grid-rows);
 
+    --nextgrid-columns : 5;
+    --nextgrid-rows : 4;
+    --nextgrid-aspect : var(--nextgrid-columns)/var(--nextgrid-rows);
+
     --footer-height: 48px;
     --header-height: 64px;
     --sidebar-width: clamp(100px, 25%, 300px);
@@ -83,6 +87,37 @@ aside /*left side column*/
     position: absolute;
     top: var(--header-height);
     width: var(--sidebar-width);
+    text-align: center;
+}
+
+#NextTetromino 
+{
+    font-weight: bold;
+    text-align: center;
+    font-size: 15pt;
+    margin-bottom: 1ex;
+}
+
+#nextgrid
+{
+    aspect-ratio: var(--nextgrid-aspect);
+    background: var(--palette-base0);
+    border: 0.5px solid var(--palette-base3);
+    margin-bottom: 5ex;
+}
+
+#Hold
+{
+    font-weight: bold;
+    font-size: 15pt;
+}
+
+#holdgrid
+{
+    aspect-ratio: var(--nextgrid-aspect);
+    background: var(--palette-base0);
+    border: 0.5px solid var(--palette-base3);
+    margin-bottom: 5ex;
 }
 
 main /*grid surroundings*/
